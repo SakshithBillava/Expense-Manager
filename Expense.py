@@ -18,9 +18,6 @@ original_title = '<p style="font-family:Bodoni MT Black; color:white; font-size:
 st.markdown(original_title,unsafe_allow_html=True)
 
 login = Image.open("login.jpg")
-#names = ['sakshith','shaun','abcd']
-#usernames = ['sakshith2002','rds','abd17']
-#password = ['2002','2001','2003']
 
 bckg_img = """
 <style> 
@@ -89,8 +86,6 @@ st.session_state.list_of_usernames = []
 for i in st.session_state.get_cred_item:
     st.session_state.list_of_usernames.append(i['username'])
 
-#print(st.session_state.list_of_usernames)
-
 if "login" not in st.session_state:
     st.session_state.login = True
 
@@ -128,12 +123,7 @@ def add_new_user():
         if(st.button("SIGN UP") and len(st.session_state.l)==3):
             st.session_state.input_display = False
             update()
-            #st.warning("LOGIN TO CONTINUE")
-        
          
-    
-    #if(st.session_state.confirm_add):
-    #    st.warning("LOGIN TO CONTINUE")
 if "isLogged" not in st.session_state:
     st.session_state.isLogged = False
 with st.sidebar:
@@ -162,7 +152,6 @@ with st.sidebar:
         
     
     elif(st.session_state.selected=="Login"):
-        #authenticator = stauth.Authenticate(credentials,"expense_cookie","abcdef",cookie_expiry_days=1)
 
         st.session_state.name,st.session_state.authentication_status,st.session_state.username = st.session_state.authenticator.login("login","main")
         if(st.session_state.authenticator.logout("LOGOUT","sidebar")):
@@ -179,12 +168,11 @@ with st.sidebar:
         else:
             st.session_state.isLogged = False
             st.write("Logged Out")
-        #@st.experimental_singleton  
+ 
         collection1 = db.myexpense
 
 if(st.session_state.authentication_status and st.session_state.selected=="Login"):
-    #login_success = Image.open("login_success.png")
-    #st.image(login_success)
+
     bckg_img_for_login = """
     <style>
     [data-testid = "stAppViewContainer"] {
@@ -218,10 +206,6 @@ elif(st.session_state.isLogged==False and st.session_state.selected=="Login"):
     """
     st.markdown(bckg_img_for_login, unsafe_allow_html=True)
 elif(st.session_state.selected=="Sign Up(New user)"):
-    #sign_up = Image.open("sign_up.png")
-    #sign_up_text = Image.open("sign_up_text.jpg")
-    #st.image(sign_up)
-    #st.image(sign_up_text) 
     bckg_img_for_sign_up = """
     <style>
     [data-testid = "stAppViewContainer"] {
@@ -372,20 +356,15 @@ def done():
 if(st.session_state.goOn==True):
     done()
     
-
-#print(st.session_state.username)
-#print(st.session_state.get_user_data)
 st.session_state.current_user_data = []
 for i in st.session_state.get_user_data:
     if(i["Username"]==st.session_state.username):
         st.session_state.current_user_data.append(i)
 
-#print(st.session_state.current_user_data)
 st.session_state.user_budget = 0
 for i in st.session_state.current_user_data:
     if(i['Option']==1):
         st.session_state.user_budget += i['Amount']
-#print(st.session_state.user_budget)
 
 st.session_state.category_dict = {}
 st.session_state.user_dataframe = pd.DataFrame.from_dict(st.session_state.current_user_data)
@@ -405,8 +384,6 @@ for i,j in st.session_state.category_dict.items():
     st.session_state.users_expense_category.append(i)
     st.session_state.users_expense_amounts.append(j)
 
-#print(st.session_state.users_expense_category)
-#print(st.session_state.users_expense_amounts)
 if(st.session_state.selected=="About"):
     bckg_img_for_about = """
     <style>
@@ -461,23 +438,13 @@ try:
         dict_of_items['Category'] = labels
         dict_of_items['Amount Spent'] = sizes
         new_df = pd.DataFrame.from_dict(dict_of_items)
-        #df_3d = new_df
         new_df = new_df.set_index('Category')
         fig4 = st.bar_chart(new_df,height=400,width=100,)
             
 
         updated_df = st.session_state.user_dataframe.drop('_id',axis=1)
         st.table(updated_df)
-        l = []
-
-        dict_for_3d = {}
-        dict_for_3d['Food'] = sizes[0]
-        dict_for_3d['Rent'] = sizes[1]
-        dict_for_3d['Lifestyle'] = sizes[2]
-        #df_for_3d = pd.DataFrame.from_dict(dict_for_3d)
-        #data = [['Rent', sizes[0]], ['Rent', sizes[1]], ['Lifestyle', sizes[2]]]
-        #df = pd.DataFrame(data,columns=['Category','Price'])
-        #df.set_index('Category')    
+  
         
 except KeyError as e:
     pass  
