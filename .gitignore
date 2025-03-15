@@ -1,0 +1,19 @@
+# Python-related
+__pycache__/
+*.py[cod]
+*.pyo
+*.DS_Store
+
+# Streamlit cache
+.streamlit/
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment files
+.env
+*.env
+
+# Logs
+*.log
