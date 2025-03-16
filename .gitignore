@@ -17,3 +17,10 @@ __pycache__/
 
 # Logs
 *.log
+
+.streamlit/secrets.toml
+
+# Ignore virtual environment
+venv/
+
+

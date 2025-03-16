@@ -17,7 +17,7 @@ import seaborn as sns
 original_title = '<p style="font-family:Bodoni MT Black; color:white; font-size: 60px;">EXPENSE MANAGER</p>'
 st.markdown(original_title,unsafe_allow_html=True)
 
-login = Image.open("login.jpg")
+login = Image.open("./assets/login.jpg")
 
 bckg_img = """
 <style> 
@@ -28,7 +28,6 @@ background-size = cover;
 
 </style>
 """
-#st.markdown(bckg_img, unsafe_allow_html=True)
 
 def update():
     st.session_state.confirm_add_user = True
@@ -48,11 +47,12 @@ def update():
         st.session_state.confirm_add_user = False
         
 
-
 @st.cache_resource
 def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"])
-client = pymongo.MongoClient("mongodb+srv://sakshith2002:admin@cluster0.frpdmtc.mongodb.net/?retryWrites=true&w=majority")
+    mongo_uri = st.secrets["mongo"]["URI"]
+    return pymongo.MongoClient(mongo_uri)
+
+client = init_connection()
 
 db = client.Expenses
 collection2 = db.user_credentials
@@ -280,7 +280,7 @@ if "proceed_with_user_expense_data" not in st.session_state:
     st.session_state.proceed_with_user_expense_data = False
 
 if(st.session_state.authentication_status==True and st.session_state.selected =="Home" ):
-    logo = Image.open("LOGO.png")
+    logo = Image.open("./assets/LOGO.png")
     st.image(logo)
     if(st.button("CLICK HERE TO ADD YOUR EXPENSE OR INCOME",on_click=callback) or st.session_state.click):
         st.button("CANCEL",on_click=cancel_clicked)
@@ -444,7 +444,11 @@ try:
 
         updated_df = st.session_state.user_dataframe.drop('_id',axis=1)
         st.table(updated_df)
+<<<<<<< HEAD
   
+=======
+          
+>>>>>>> f21d809 (Your commit message)
         
 except KeyError as e:
     pass  
