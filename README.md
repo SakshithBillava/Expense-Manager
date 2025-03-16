@@ -48,10 +48,10 @@ streamlit run Expense.py
 ```
 
 🎯 Usage
-Register or log in.
-Add expenses with category and amount.
-View detailed charts and reports.
-Update or delete records if needed.
+1. Register or log in.
+2. Add expenses with category and amount.
+3. View detailed charts and reports.
+4. Update or delete records if needed.
 
 🚀 Future Enhancements
 Automated Expense Classification – Implement machine learning to automatically categorize expenses based on transaction patterns.
